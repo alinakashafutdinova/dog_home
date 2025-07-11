@@ -1,173 +1,364 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Хвост и Лапа — Найди своего друга</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DoggyDoc - Забота о здоровье вашей собаки</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* Общие переменные */
     :root {
-      --bg: #fffaf6;
-      --text: #333;
-      --accent: #ff9352;
-      --card-bg: white;
+      --primary-color: #3498db; /* Синий цвет */
+      --secondary-color: #f39c12; /* Оранжевый цвет */
+      --text-color: #333;
+      --background-color: #f9f9f9;
+      --white: #fff;
     }
-    body.dark {
-      --bg: #1c1c1c;
-      --text: #f2f2f2;
-      --accent: #ffa366;
-      --card-bg: #2c2c2c;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.4s, color 0.4s;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      line-height: 1.6;
     }
-    header {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      background: radial-gradient(circle at center, #fff1e6, #ffe0c4);
-      text-align: center;
+
+    /* Общие стили */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
     }
-    .btn {
-      background: var(--accent);
-      color: white;
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--secondary-color);
+    }
+
+    button, .button {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border: none;
       padding: 12px 24px;
       font-size: 1rem;
-      border: none;
-      border-radius: 12px;
-      text-decoration: none;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
+      transition: background-color 0.3s ease;
+      text-decoration: none; /* For .button */
+      display: inline-block; /* For .button */
     }
-    .toggle-theme {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 10;
+
+    button:hover, .button:hover {
+      background-color: var(--secondary-color);
     }
+
+    /* Header */
+    header {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    header .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Navigation */
     nav {
-      background: rgba(255, 255, 255, 0.8);
+      background-color: var(--white);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      z-index: 9;
-      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    nav .container {
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 0;
+      justify-content: space-between;
+      align-items: center;
     }
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
     }
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
+
+    nav ul li {
+      margin-left: 20px;
     }
-    h2 {
-      font-size: 2.2rem;
-      text-align: center;
-      margin-bottom: 30px;
+
+    nav ul li:first-child {
+      margin-left: 0;
     }
-    .cards {
+
+    /* Hero Section */
+    #hero {
+      background-color: var(--background-color);
+      padding: 4rem 0;
+    }
+
+    #hero .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    #hero p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    #hero img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Services Section */
+    #services {
+      background-color: var(--white);
+      padding: 4rem 0;
+    }
+
+    #services h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
-    .card {
-      background: var(--card-bg);
-      border-radius: 20px;
+
+    .service-card {
+      background-color: var(--background-color);
+      border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 16px;
-      margin-bottom: 16px;
-    }
-    .card h3 { margin-bottom: 6px; }
-    .filters {
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
-      margin-bottom: 30px;
+      transition: transform 0.3s ease;
     }
-    .filters select {
-      padding: 10px;
-      border-radius: 8px;
-      margin: 0 10px;
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .service-card p {
       font-size: 1rem;
     }
-    footer {
+
+    /* Contact Section */
+    #contact {
+      background-color: var(--background-color);
+      padding: 4rem 0;
+    }
+
+    #contact h2 {
+      font-size: 2.5rem;
       text-align: center;
-      padding: 40px 20px;
-      background: #f0eae3;
-      font-size: 0.9rem;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #contact label {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 12px;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    #contact textarea {
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    /* Медиа-запросы для адаптивности */
+    @media (max-width: 768px) {
+      #hero .container {
+        grid-template-columns: 1fr;
+      }
+      nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+      nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-<button class="toggle-theme" onclick="toggleTheme()">🌙 Тема</button>
-<nav>
-  <a href="#about">О нас</a>
-  <a href="#dogs">Собаки</a>
-  <a href="#how">Как усыновить</a>
-  <a href="#form">Заявка</a>
-</nav>
+  <!-- Шапка сайта -->
+  <header>
+    <div class="container">
+      <div class="logo">DoggyDoc</div>
+      <p class="tagline">Надежный партнер в заботе о здоровье вашей собаки</p>
+      <a href="#services" class="button">Наши услуги</a>
+    </div>
+  </header>
 
-<header>
-  <h1>Хвост и Лапа</h1>
-  <p>Помогаем найти дом тем, кто его ждал всю жизнь</p>
-  <a href="#dogs" class="btn">Посмотреть собак</a>
-</header>
+  <!-- Навигация -->
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">DoggyDoc</a>
+      <ul>
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<section id="about">
-  <h2>О нас</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    С 2017 года мы помогаем бездомным собакам найти новый дом. Более 600 счастливых историй и сотни благодарных хвостов.
-  </p>
-</section>
+  <!-- Секция "Герой" (основной контент) -->
+  <section id="hero">
+    <div class="container">
+      <div>
+        <h1>Забота о вашем питомце с любовью</h1>
+        <p>Мы предлагаем широкий спектр ветеринарных услуг, чтобы ваша собака оставалась здоровой и счастливой.</p>
+        <a href="#contact" class="button">Записаться на прием</a>
+      </div>
+      <img src="" alt="Счастливая собака">
+    </div>
+  </section>
 
-<section id="dogs">
-  <h2>Наши хвостики</h2>
-  <div class="filters">
-    <label for="ageFilter">Возраст:</label>
-    <select id="ageFilter">
-      <option value="all">Все</option>
-      <option value="young">До 2 лет</option>
-      <option value="adult">От 2 до 5</option>
-      <option value="senior">Старше 5</option>
-    </select>
-    <label for="sizeFilter">Размер:</label>
-    <select id="sizeFilter">
-      <option value="all">Все</option>
-      <option value="small">Маленький</option>
-      <option value="medium">Средний</option>
-      <option value="large">Крупный</option>
-    </select>
-  </div>
-  <div class="cards" id="dogCards">
-    <!-- Карточки собак вставим в следующей части -->
+  <!-- Секция "Услуги" -->
+  <section id="services">
+    <div class="container">
+      <h2>Наши услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="" alt="Плановый осмотр">
+          <h3>Плановый осмотр</h3>
+          <p>Регулярные осмотры для поддержания здоровья вашей собаки.</p>
+        </div>
+        <div class="service-card">
+          <img src="" alt="Вакцинация">
+          <h3>Вакцинация</h3>
+          <p>Вакцинация в соответствии с возрастом и потребностями вашего питомца.</p>
+        </div>
+        <div class="service-card">
+          <img src="" alt="Лечение заболеваний">
+          <h3>Лечение заболеваний</h3>
+          <p>Диагностика и лечение различных заболеваний.</p>
+        </div>
+        <div class="service-card">
+          <img src="" alt="Хирургия">
+          <h3>Хирургия</h3>
+          <p>Проведение операций различной сложности.</p>
+        </div>
+        <div class="service-card">
+          <img src="" alt="Стоматология">
+          <h3>Стоматология</h3>
+          <p>Уход за зубами и полостью рта вашей собаки.</p>
+        </div>
+        <div class="service-card">
+          <img src="" alt="Консультации">
+          <h3>Консультации</h3>
+          <p>Консультации по уходу и питанию.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Секция "Контакты" -->
+  <section id="contact">
+    <div class="container">
+      <h2>Свяжитесь с нами</h2>
+      <form>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Сообщение:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Подвал сайта -->
+  <footer>
+    <div class="container">
+      &copy; 2024 DoggyDoc. Все права защищены.
+    </div>
+  </footer>
+
+</body>
+</html>
